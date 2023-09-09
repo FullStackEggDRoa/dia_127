@@ -1,0 +1,53 @@
+<section id="contenido" class="row container" >
+    <article class="col article">
+
+        <h2>
+            Principales
+        </h2>
+        <div class="content row justify-content-md-center">
+            <div class="col mb-3 mb-sm-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="row justify-content-md-center">
+
+        </section>
+    </article>
+
+    <aside class="col">
+        <h2>
+            Noticias Recientes
+        </h2>
+        <div class="row">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div th:each="noticia : ${noticias}" class="col">
+                    <div class="card">
+                        <!--                                <img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-header">
+                            Featured
+                        </div>
+
+                        <div class="card-body text-bg-secondary">
+                            <h5 th:text="${noticia.titulo}" class="card-title"></h5>
+                            <p th:text="${noticia.cuerpo}" class="card-text"></p>
+                            <a href="#" class="btn btn-primary">Más Información</a>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            2 days ago
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </aside>
+</section>

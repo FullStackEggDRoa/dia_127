@@ -1,0 +1,29 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 30, 2023, 3:20:38 PM
+    Author     : droa
+*/
+.container-sm{
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 5px;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.container-md{
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 5px;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.article{
+    
+}

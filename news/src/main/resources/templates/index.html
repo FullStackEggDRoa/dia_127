@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Noticias</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/css/icofont.min.css">
+        <link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">EggCooperation Noticias</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li th:if="${modulo} == sesion AND ${modo} == admin" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Administracion
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><hr class="dropdown-divider">Noticias</li>
+                                <li><a class="dropdown-item" th:href="@{/noticia/creacion}">Crear Noticias</a></li>
+                                <li><a class="dropdown-item" th:href="@{/noticia/modificacion}">Modificar Noticias</a></li>
+                                <li><a class="dropdown-item" href="#">Quitar Noticias</a></li>
+                                <li><hr class="dropdown-divider">Usuarios</li>
+                                <li><a class="dropdown-item" href="#">Roles</a></li>
+                                <li><a class="dropdown-item" th:href="@{/usuario/modificacion}">Privilegios</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled"><time datetime="2023-10-22">22 de Octubre de 2023</time></a>
+                        </li>
+                        <li class="nav-item">
+                            <div th:if="${hecho} != null"  class="alert alert-success" role="alert">
+                                <h7 th:text="${hecho}"></h7>
+                            </div>
+                            <div th:if="${notificacion} != null" class="alert alert-warning" role="alert">
+                                <h7 th:text="${notificacion}"></h7>
+                            </div>
+
+                        </li>
+                    </ul>
+                    <form th:if="${modulo} != 'inicio' AND ${modulo} != 'signin'" class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Palabras Clave" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                    <ul class="nav">
+                        <li th:if="${modulo} == inicio" class="nav-item">
+                            
+                            <a class="nav-link" th:href="@{/registro}">Registrar <i class="icofont-duotone icofont-add-users"></i></a>
+                        </li>
+                        <li th:if="${modulo} == inicio" class="nav-item">
+                                
+                            <a class="nav-link" th:href="@{/ingreso}">Ingresar <i class="icofont-login"></i></i></a>
+                        </li>
+                        <li th:if="${modulo} == sesion" class="nav-item">
+                                
+                            <a class="nav-link" th:href="@{/salir}">Cerrar Sesión <i class="icofont-logout"></i></i></a>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+        
+<!--        <section th:replace="${modulo =='modificacion'}?~{/modulos/modificacion :: section}:~{/modulos/inicial :: section}"></section>-->
+            <section th:replace="${modulo =='modificacion'} ? ~{/modulos/modificacion :: section} : (${modulo == 'noticiaform'}?~{/modulos/noticia_form :: section}:(${modulo == 'signin'}?~{/modulos/signin :: section}:(${modulo == 'signup'}?~{/modulos/signup :: section}:(${modulo == 'sesion'}?~{/modulos/sesion :: section}:~{/modulos/inicial :: section}))))"></section>
+<!--        <section th:if="${modulo == 'inicio'}" th:replace="/modulos/inicial :: section"></section>
+        <section th:unless="${modulo != 'inicio'}" th:replace="${modulo == 'modificacion'}?~{/modulos/modificacion :: section}:~{/modulos/noticia_form :: section}"></section>-->
+        
+        <footer th:if="${modulo} != 'inicio' AND ${modulo} != 'signin'" class="text-muted py-5">
+            <div class="containerFooter">
+                <p class="mb-1">Footer</p>
+                <p class="float-end mb-1">
+                    <a href="#" style="text-decoration:none"><span>⬆️</span>Ir a Arriba</a>
+                </p>
+            </div>
+
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+         </script>  
+    </body>
+</html>

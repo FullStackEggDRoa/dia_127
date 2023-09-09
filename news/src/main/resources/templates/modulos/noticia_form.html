@@ -1,0 +1,46 @@
+<section id="contenido" class="col" >
+    <div class="container-sm">
+        <h2>Formulario Noticia</h2>
+        <form class="row g-3 needs-validation" th:action="*{modo == 'modificar'}?@{/noticia/modificar/__${noticia.id}__}:@{/noticia/crear}" method="POST" novalidate>
+            <input hidden th:value= "${id}" name="id">
+            
+            <div class="col-md-12 mb-3">
+                <label for="exampleFormControlInput1" class="form-label" >Titulo: </label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">🝨</span>
+                    <input th:value="${noticia.titulo}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo Noticia" name="titulo" aria-describedby="inputGroupPrepend3 validationServerTituloFeedback" required>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerTituloFeedback" class="invalid-feedback">
+                        Una Noticia necesita su Titulo
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label" >Contenido:</label>
+                <div class="input-group has-validation">
+                    <textarea th:text="${noticia.cuerpo}" class="form-control" id="exampleFormControlTextarea1" rows="3" name="cuerpo" placeholder="Detalle Noticia" aria-describedby="inputGroupPrepend3 validationServerCuerpoFeedback" required></textarea>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerCuerpoFeedback" class="invalid-feedback" th:value="${notificacion}">
+                        No es posible un Contenido vacío.
+                    </div>
+                </div>  
+            </div>
+            <div class="col-12">
+                <div th:if="${modo} == 'modificar'" class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" name="alta" id="flexCheckDefault" th:checked="${noticia.alta}" >
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Noticia Disponible
+                    </label>
+                </div>
+            </div>    
+            <div class="col-12">
+                <button th:if="${modo} == 'crear'" type="submit" class="btn btn-primary">Crear Noticia</button>
+                <button th:if="${modo} == 'modificar'" type="submit" class="btn btn-primary">Modificar Noticia</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+<section id="contenido" class="col" >
+    <div class="container-sm">
+        <h3 th:if="${modo} == 'ingreso'">Ingreso</h3>
+        <h3 th:unless="${modo} != 'registro'">Registro Nuevo Usuario</h3>
+        <br>
+        <form class="row g-3 needs-validation" th:action="@{/ingresoChk}" method="POST" novalidate>
+
+            
+            <div class="col-md-10 mb-3">
+                <label for="exampleFormControlInput1" class="form-label" >Usuario: </label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="correo electrónico" name="correo" aria-describedby="inputGroupPrepend3 validationServerUsuarioFeedback" required>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerUsuarioFeedback" class="invalid-feedback">
+                        Campo Requerido!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label" >Contraseña:</label>
+                <div class="input-group has-validation">
+                    <input type="password" class="form-control" id="exampleFormControlTextarea1" name="contrasenia" placeholder="Contraseña" aria-describedby="inputGroupPrepend3 validationServerContraseniaFeedback" required></textarea>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerContraseniaFeedback" class="invalid-feedback" th:value="${notificacion}">
+                         Campo Requerido!
+                    </div>
+                </div>  
+            </div>
+            
+            <div class="col-10">
+                <div th:if="${modo} == 'ingreso'" class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" name="recordar" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Recordar
+                    </label>
+                </div>
+            </div>    
+            <div class="col-10">
+                <button th:if="${modo} == 'ingreso'" type="submit" class="btn btn-primary">Ingresar</button>
+                <button th:if="${modo} == 'registro'" type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+            
+        </form>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+<section id="contenido" class="col" >
+    <div class="container-sm">
+        <h3>Registro Nuevo Usuario</h3>
+        <br>
+        <form class="row g-3 needs-validation" th:action="@{/registrar}" method="POST" novalidate>
+<!--            <input hidden th:value= "${id}" name="id">-->
+            
+            <div class="col-md-10 mb-3">
+                <label for="exampleFormControlInput1" class="form-label" >Nombre: </label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">N</span>
+                    <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre" name="nombre" aria-describedby="inputGroupPrepend3 validationServerUsuarioFeedback" required>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerUsuarioFeedback" class="invalid-feedback">
+                        Campo Requerido!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 mb-3">
+                <label for="exampleFormControlInput1" class="form-label" >Correo: </label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="correo electrónico" name="correo" aria-describedby="inputGroupPrepend3 validationServerUsuarioFeedback" required>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerUsuarioFeedback" class="invalid-feedback">
+                        Campo Requerido!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label" >Contraseña:</label>
+                <div class="input-group has-validation">
+                    <input type="password" class="form-control" id="exampleFormControlTextarea1" name="contrasenia" placeholder="Contraseña" aria-describedby="inputGroupPrepend3 validationServerContraseniaFeedback" required></textarea>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerContraseniaFeedback" class="invalid-feedback" th:value="${notificacion}">
+                         Campo Requerido!
+                    </div>
+                </div>  
+            </div>
+            <div class="col-md-10 mb-3" th:if="${modo} == 'registro'">
+                <label for="exampleFormControlTextarea1" class="form-label" >Confirmar Contraseña:</label>
+                <div class="input-group has-validation">
+                    <input type="password" class="form-control" id="exampleFormControlTextarea1" name="contraseniaChk" placeholder="Confirmar Contraseña" aria-describedby="inputGroupPrepend3 validationServerContraseniaFeedback" required></textarea>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    <div id="validationServerContraseniaFeedback" class="invalid-feedback" th:value="${notificacion}">
+                         Campo Requerido!
+                    </div>
+                </div>  
+            </div>               
+            <div class="col-10">
+               
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+            
+        </form>
+    </div>
+</section>

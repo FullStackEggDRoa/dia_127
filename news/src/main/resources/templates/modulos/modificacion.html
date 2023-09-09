@@ -1,0 +1,73 @@
+
+<section id="contenido" class="row " >
+    <div class="container-lg">
+        <h4 th:if="${modo} == crear">Noticias Registradas</h4>
+        <h4 th:if="${modo} == usuario">Privilegios de Usuario</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    
+                    <th th:if="${modo} == crear" scope="col">Titulo</th>
+                    <th th:if="${modo} == usuario"scope="col">Nombre</th>
+                    
+                    <th th:if="${modo} == usuario" scope="col">Correo</th>
+                    
+                    <th th:if="${modo} == crear" scope="col">Estados</th>
+                    <th th:unless="${modo} == crear" scope="col">Estados</th>
+                    
+                    <th th:if="${modo} == crear" scope="col">Acciones</th>
+                    <th th:unless="${modo} == crear" scope="col">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody th:if="${modo} == crear">
+                
+                <tr th:each="noticia : ${noticias}">
+                    <th th:text="${noticia.id}" scope="row"></th>
+                    <th th:text="${noticia.titulo}" scope="row"></th>
+                    
+<!--                    <td th:text="${modo == usuario} ? ~{${noticia.id}} : ~{${usuario.correo}}"></td>-->
+                   
+                    <td>
+                        <p alt="Visible"><strong>👁</strong></p>
+                        <p ><strong><strike>𓁼</strike></strong></p>
+                        
+                    </td>
+                    <td>
+                        <!--                      <span style="display: inline-block; font-size: 24px; color: #000000; background: #cccccc; border-radius: 6px; padding: 10px 20px;">👁️</span>      <button type="button" class="btn btn-dark">Modificar</button>-->
+                        <a th:href= "@{/usuario/modificacion/__${noticia.id}__}"><i class="icofont-edit" alt="Modificar"></a>
+                        <a th:href="@{/usuario/modificacion/__${noticia.id}__}"><i class="icofont-delete-alt" alt="Eliminar"></i></a>
+                        
+                    </td>
+                </tr>
+
+            </tbody>
+            <tbody th:if="${modo} == usuario">
+                
+                <tr th:each="usuario : ${usuarios}">
+                    <th th:text="${usuario.id}" scope="row"></th>
+                    <th th:text="${usuario.nombre}" scope="row"></th>
+                    <th th:text="${usuario.correo}" scope="row"></th>
+<!--                    <td th:text="${modo == usuario} ? ~{${noticia.id}} : ~{${usuario.correo}}"></td>-->
+                   
+                    <td>
+                        <p th:if="${modo} == usuario AND ${usuario.estado}" alt="Activo"><i class="icofont-duotone icofont-eye-open"></i></p>         
+                        <p th:if="${modo} == usuario AND not ${usuario.estado}" alt="Desactivado"><i class="icofont-duotone icofont-eye-close"></i></p>
+                        
+                        <p th:if="${modo} == usuario AND ${usuario.perfilUsusario} == 'ADMINISTRADOR'" alt="Administrador"><i class="icofont-manage-user"></i></p>
+                        
+                    </td>
+                    <td>
+                        <!--                      <span style="display: inline-block; font-size: 24px; color: #000000; background: #cccccc; border-radius: 6px; padding: 10px 20px;">👁️</span>      <button type="button" class="btn btn-dark">Modificar</button>-->
+                        <a th:href= "@{/usuario/modificacion/__${usuario.id}__}"><i class="icofont-edit" alt="Modificar"></i> </a>
+                        
+                        <a th:href="@{/usuario/modificacion/__${usuario.id}__}"><i class="icofont-delete-alt" alt="Eliminar"></i></a>
+                        
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
